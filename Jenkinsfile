@@ -1,13 +1,13 @@
 pipeline {
-    agent { 
-        docker {
-            image 'python:3'
-            label 'my-build-agent'
-      }
-    }
-
+    agent any 
     stages {
         stage('Preparação do Ambiente') {
+            agent  { 
+                docker {
+                    image 'python:3'
+                    label 'my-build-agent'
+                 }
+            }
             steps {
                 sh """
                     python3 --version
