@@ -1,10 +1,16 @@
 pipeline {
-    agent any
+    agent docker {
+        image 'python:3'
+        label 'my-build-agent'
+      }
 
     stages {
         stage('Preparação do Ambiente') {
             steps {
-                
+                sh """
+                    python3 --version
+                    pip3 --version
+                """
                 sh 'pip install -r requisitos.txt'
             }
         }
