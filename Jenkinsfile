@@ -7,7 +7,7 @@ pipeline {
                     python3 --version
                     pip3 --version
                 """
-                sh 'pip install -r requisitos.txt'
+                sh 'pip install --break-system-packages -r requisitos.txt'
             }
         }
 
