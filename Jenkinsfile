@@ -2,7 +2,7 @@ pipeline {
     agent any
     parameters {
         string(name: 'LIMIAR_DISTANCIA', defaultValue: '3', description: 'Limiar de distância para considerar uma pergunta')
-        string(name: 'PERGUNTAS', defaultValue: 'Como você está?|Qual é o seu nome?|Qual o animal mais rápido do mundo?', description: 'Perguntas separadas por |(pipe)')
+        string(name: 'PERGUNTAS', defaultValue: 'Como você está?|quando o Brasil foi descoberto?|Qual o animal mais rápido do mundo?', description: 'Perguntas separadas por |(pipe)')
     }
     stages {
         stage('Preparação do Ambiente') {
@@ -40,7 +40,7 @@ pipeline {
 
                     perguntasList.each { pergunta ->
                         echo "executando: ${pergunta}"
-                        sh "python3 chat_bot.py ${params.LIMIAR_DISTANCIA} ${pergunta}"
+                        sh "python3 chat_bot.py ${params.LIMIAR_DISTANCIA} '${pergunta}'"
                     
                     }
                     
