@@ -48,17 +48,21 @@ pipeline {
             }
         }
         stage('Enviando email'){
-            steps{
+          
+            def mailRecipients = "gabrielrbs2004@gmail.com"
+            def jobName = currentBuild.fullDisplayName
 
-                script{
-                        def mailRecipients = "gabrielrbs2004@gmail.com"
-                        def jobName = currentBuild.fullDisplayName
-
-                        mail body: '''${SCRIPT, template="groovy-html.template"}''',
-                            subject: "[Jenkins] ${jobName}",
-                            to: "${mailRecipients}",
-                }   
-            }
+            mail body: '''${SCRIPT, template="groovy-html.template"}''',
+                subject: "[Jenkins] ${jobName}",
+                to: "${mailRecipients}" 
+                
+        }
+    }
+    post {
+        always {
+            mail body: '''${SCRIPT, template="groovy-html.template"}''',
+                subject: "[Jenkins] ${jobName}",
+                to: "${mailRecipients}"
         }
     }
 }
