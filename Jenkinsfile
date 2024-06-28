@@ -47,5 +47,21 @@ pipeline {
                 }
             }
         }
+        stage('Enviando email'){
+            steps{
+
+                script{
+                        def mailRecipients = "deploy@jenkins-deploy.com"
+                        def jobName = currentBuild.fullDisplayName
+
+                        emailext body: '''${SCRIPT, template="groovy-html.template"}''',
+                            mimeType: 'text/html',
+                            subject: "[Jenkins] ${jobName}",
+                            to: "${mailRecipients}",
+                            replyTo: "${mailRecipients}",
+                            recipientProviders: [[$class: 'CulpritsRecipientProvider']]
+                }   
+            }
+        }
     }
 }
