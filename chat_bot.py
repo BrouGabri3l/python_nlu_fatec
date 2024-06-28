@@ -28,7 +28,7 @@ if __name__ == "__main__":
   perguntas_respostas = carregar_perguntas("perguntas.txt")
   limiar_distancia = int(sys.argv[1])
   while True:
-    pergunta = input("Faça uma pergunta:").lower()
+    pergunta = sys.argv[2]
     if pergunta == "sair":
       break
     resposta = encontrar_resposta(pergunta, perguntas_respostas, limiar_distancia)
