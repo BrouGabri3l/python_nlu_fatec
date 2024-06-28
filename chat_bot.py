@@ -1,4 +1,5 @@
 import Levenshtein
+import sys
 
 def carregar_perguntas(arquivo):
   perguntas_respostas = {}
@@ -25,7 +26,7 @@ def encontrar_resposta(pergunta, perguntas_respostas, limiar_distancia=5):
 
 if __name__ == "__main__":
   perguntas_respostas = carregar_perguntas("perguntas.txt")
-  limiar_distancia = int(input("Digite o limiar de distância para considerar uma pergunta semelhante:"))
+  limiar_distancia = int(sys.argv[1])
   while True:
     pergunta = input("Faça uma pergunta:").lower()
     if pergunta == "sair":
