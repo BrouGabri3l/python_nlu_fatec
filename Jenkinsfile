@@ -1,8 +1,8 @@
 pipeline {
     agent any
     parameters {
-        string(name: 'LIMIAR_DISTANCIA', defaultValue: '3', description: 'Limiar de distância para considerar uma pergunta semelhante')
-        string(name: 'PERGUNTAS', defaultValue: 'Como você está?|Qual é o seu nome?', description: 'Perguntas separadas por |')
+        string(name: 'LIMIAR_DISTANCIA', defaultValue: '3', description: 'Limiar de distância para considerar uma pergunta')
+        string(name: 'PERGUNTAS', defaultValue: 'Como você está?|Qual é o seu nome?|Qual o animal mais rápido do mundo?', description: 'Perguntas separadas por |(pipe)')
     }
     stages {
         stage('Preparação do Ambiente') {
@@ -37,7 +37,7 @@ pipeline {
             steps {
                 script {
                     def perguntas = params.PERGUNTAS.split(' \\|').collect { it.trim() }.join('')
-                    
+                    sh "echo ${params.PERGUNTAS}"
                     for (pergunta in perguntas) {
                         sh "python3 chat_bot.py ${params.LIMIAR_DISTANCIA} ${pergunta}"
                     }
