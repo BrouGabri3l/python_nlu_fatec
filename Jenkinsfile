@@ -36,7 +36,7 @@ pipeline {
         stage('Execução do Chatbot') {
             steps {
                 script {
-                    sh "echo ${params.PERGUNTAS.split('|'))}"
+                    sh "echo ${params.PERGUNTAS.split('|')}"
                     // for (pergunta in perguntas) {
                     //     sh "python3 chat_bot.py ${params.LIMIAR_DISTANCIA} ${pergunta}"
                     // }
