@@ -51,12 +51,9 @@ pipeline {
     }
     post {
         always {
-            def mailRecipients = "gabrielrbs2004@gmail.com"
-            def jobName = currentBuild.fullDisplayName
-            
             mail body: '''${SCRIPT, template="groovy-html.template"}''',
-                subject: "[Jenkins] ${jobName}",
-                to: "${mailRecipients}"
+                subject: "[Jenkins] ${currentBuild.fullDisplayName}",
+                to: "gabrielrbs2004@gmail.com"
         }
     }
 }
