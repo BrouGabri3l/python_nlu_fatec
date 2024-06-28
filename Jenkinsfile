@@ -51,7 +51,7 @@ pipeline {
             steps{
 
                 script{
-                        def mailRecipients = "deploy@jenkins-deploy.com"
+                        def mailRecipients = "gabrielrbs2004@gmail.com"
                         def jobName = currentBuild.fullDisplayName
 
                         emailext body: '''${SCRIPT, template="groovy-html.template"}''',
