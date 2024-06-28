@@ -34,8 +34,8 @@ pipeline {
         }
 
         stage('Execução do Chatbot') {
-            script {
-                steps {
+            steps {
+                script {
                     def perguntas = params.PERGUNTAS.split(' \\|').collect { it.trim() }.join(' ')
                     sh 'python3 chat_bot.py ${params.LIMIAR_DISTANCIA} ${perguntas}'
                 }
